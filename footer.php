@@ -22,13 +22,12 @@
   <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write('<script src="<?php echo $GLOBALS["TEMPLATE_RELATIVE_URL"] ?>js/jquery-1.7.1.min.js"><\/script>')</script>
-  <!--<?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."jquery.viewport.mini.js") ?>-->
-  <!-- Mediaelement.js wordpress is not that compitable with pjax, need to include another copy here -->
+  <!-- Mediaelement.js wordpress is not that compitable with pjax, need to include another copy here if used -->
   <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."mediaelement/mediaelement-and-player.min.js") ?>
-  <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."jquery.animate-enhanced.min.js") ?>
-  <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."jquery.pjax.min.js") ?>
-  <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."jquery.smoothscroll.min.js") ?>
-  <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."jquery.autoresize.min.js") ?>
+  <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."js/jquery.animate-enhanced.min.js") ?>
+  <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."js/jquery.pjax.min.js") ?>
+  <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."js/jquery.smoothscroll.min.js") ?>
+  <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."js/jquery.autoresize.min.js") ?>
  
   <!--<?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."js/plugins.js") ?>-->
   <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."js/script.js") ?>
