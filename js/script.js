@@ -15,28 +15,28 @@ function get_gravatar(email, size) {
     return 'http://www.gravatar.com/avatar/' + MD5(email) + '.jpg?s=' + size;
 }
 
-//Make comment box autoresize
-$('textarea#comment').autoResize({
-    minHeight: 31,
-    maxHeight: 600,
-    extraSpace: 14,
-    animate: false,
-    onAfterResize: function(){
-    	$('textarea#comment').prev().height($('textarea#comment').height());
-    }
-});
 
 var init_comment = function(){
+	//Make comment box autoresize
+	$('textarea#comment').autoResize({
+		minHeight: 31,
+		maxHeight: 600,
+		extraSpace: 14,
+		animate: false,
+		onAfterResize: function(){
+			$('textarea#comment').prev().height($('textarea#comment').height());
+		}
+	});
 
 	//When comment box is in focus, fade in submit button, display visitor's avatar if there's comment history with email address auto filled in the <input>
 	$('textarea#comment').focus(function() {
-	  $('#submit').fadeIn();
-	  if($('input#email').val() && $('input#author').val() && $(".comment-info").css('display')==='none') 	{
-	  	$('#small-author-avatar').html('<img src="' + get_gravatar($('input#email').val(),31) + '" /><b class="user-border"></b>');
-	  	$('textarea#comment').css('left','35px');
-	  	$('textarea#comment').css('width','535px');
-	  	$('#small-author-avatar').show();
-	  };
+		$('#submit').fadeIn();
+		if($('input#email').val() && $('input#author').val() && $(".comment-info").css('display')==='none'){
+			$('#small-author-avatar').html('<img src="' + get_gravatar($('input#email').val(),31) + '" /><b class="user-border"></b>');
+			$('textarea#comment').css('left','35px');
+			$('textarea#comment').css('width','535px');
+			$('#small-author-avatar').show();
+		};
 	});
 	//Display more item to fill in the form when some comments is typed in, if it's a new visitor 
 	$('textarea#comment').keyup(function() {
