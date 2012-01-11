@@ -45,4 +45,4 @@ On iPhones and iPads you can book mark a web page and have it show up on the hom
 
 Title Font
 ----------
-It's designed to use conquette bold. But to use it, you need to buy a web license for the font.
+The Logo is designed to use Conquette bold font. To use it, you need to buy a web license for the font.
