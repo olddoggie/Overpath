@@ -13,8 +13,10 @@ My blog [Xiao Life Journal](http://xiaolife.com) is using this theme. As a testi
 
 Current State
 -------------
-Not ready for production use yet. Still has a lot of bugs when doing with pjax.
-Javascript part is horrible, so NEED SOMEONE TO REWRITE IT
+No support for IE 1-9.
+Not ready for production use yet.
+Some bugs when doing with pjax.
+Javascript part is horrible, so NEED SOMEONE TO REWRITE IT.
 
 Next Plan
 ---------
