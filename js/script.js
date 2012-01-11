@@ -25,40 +25,44 @@ $('textarea#comment').autoResize({
     	$('textarea#comment').prev().height($('textarea#comment').height());
     }
 });
-//When comment box is in focus, fade in submit button, display visitor's avatar if there's comment history with email address auto filled in the <input>
-$('textarea#comment').focus(function() {
-  $('#submit').fadeIn();
-  if($('input#email').val() && $('input#author').val() && $(".comment-info").css('display')==='none') {
-  	$('#small-author-avatar').html('<img src="' + get_gravatar($('input#email').val(),31) + '" /><b class="user-border"></b>');
-  	$('textarea#comment').css('left','35px');
-  	$('textarea#comment').css('width','535px');
-  	$('#small-author-avatar').show();
-  };
-});
-//Display more item to fill in the form when some comments is typed in, if it's a new visitor 
-$('textarea#comment').keyup(function() {
-	if( $('#small-author-avatar').css('display')==='none' && $('textarea#comment').val()){
-		$(".comment-info").show();
-	}else{
-		$(".comment-info").hide();
-	};
-});
-//When comment box lose focus, fade out the submit
-$('textarea#comment').blur(function() {
-	if(!$('textarea#comment').val()){
-		$('#submit').fadeOut();
-	}
-});
-//Form check before submit the comment, auto focus on the blank item
-$('input#submit').click(function(event) {
-	if(!$('input#author').val()){
-		$('input#author').focus();
-		event.preventDefault();
-	}else if(!$('input#email').val()){
-		$('input#email').focus();
-		event.preventDefault();
-	};
-});
+
+var init_comment = function(){
+
+	//When comment box is in focus, fade in submit button, display visitor's avatar if there's comment history with email address auto filled in the <input>
+	$('textarea#comment').focus(function() {
+	  $('#submit').fadeIn();
+	  if($('input#email').val() && $('input#author').val() && $(".comment-info").css('display')==='none') 	{
+	  	$('#small-author-avatar').html('<img src="' + get_gravatar($('input#email').val(),31) + '" /><b class="user-border"></b>');
+	  	$('textarea#comment').css('left','35px');
+	  	$('textarea#comment').css('width','535px');
+	  	$('#small-author-avatar').show();
+	  };
+	});
+	//Display more item to fill in the form when some comments is typed in, if it's a new visitor 
+	$('textarea#comment').keyup(function() {
+		if( $('#small-author-avatar').css('display')==='none' && $('textarea#comment').val()){
+			$(".comment-info").show();
+		}else{
+			$(".comment-info").hide();
+		};
+	});
+	//When comment box lose focus, fade out the submit
+	$('textarea#comment').blur(function() {
+		if(!$('textarea#comment').val()){
+			$('#submit').fadeOut();
+		}
+	});
+	//Form check before submit the comment, auto focus on the blank item
+	$('input#submit').click(function(event) {
+		if(!$('input#author').val()){
+			$('input#author').focus();
+			event.preventDefault();
+		}else if(!$('input#email').val()){
+			$('input#email').focus();
+			event.preventDefault();
+		};
+	});
+};
 
 //Incompatible with smoothscroll.
 //$('.action-comment').click(function(event) {
@@ -123,6 +127,7 @@ $('#container').bind('pjax:end', function(event) {
 		prepareDOM();
 		display_text();
 		display_image();
+		init_comment();
 		//Mark that it's now a single page instead of an index page
 		$('#main').removeClass('index').addClass('single').after('<div id="sub-main" role="main" class="single" style="opacity:0"></div>');
 	}
@@ -183,6 +188,8 @@ $(function() {
  		   }
  		   timer = setTimeout(titlechange, delay);
 		});
+	}else if($('#main').hasClass('single')){
+		init_comment();
 	}
 	//Listens to keyframe animation event so when pjax main animation finishes, do the trival things
 	$('html').on('webkitAnimationEnd mozAnimationEnd oAnimationEnd MSAnimationEnd animationend', function(event){
