@@ -13,29 +13,37 @@ My blog [Xiao Life Journal](http://xiaolife.com) is using this theme. As a testi
 
 Current State
 -------------
-No support for IE 1-9.
+Not tested on IE 6-8. Partly work on IE 9. Should be compitable with IE 10.
+
+Incompitable with Opera since Opera doesn't support css animation well.
+
 Not ready for production use yet.
+
 Some bugs when doing with pjax.
-Javascript part is horrible, so NEED SOMEONE TO REWRITE IT.
+
+Javascript code is a mess, so NEED SOMEONE TO REWRITE IT.
 
 Next Plan
 ---------
-Use [jquery-pageslide](https://github.com/srobbin/jquery-pageslide) to display things like posts list or sidebar.
-Fix pjax bugs
-Build up other pages like page.php and 404.php
+1. Fix pjax bugs
+2. Build up other pages like page.php and 404.php
 
 Used jQuery Plugins
 -------------------
-### jquery.animate-enhanced.js
-### jquery.pjax.js
-### jquery.smoothscroll.js
-### jquery.autoresize.js
+1. jquery.transition.js
+2. jquery.pjax.js
+3. jquery.smoothscroll.js
+4. jquery.autoresize.js
 
 
 Root Images
 -----------
 
 ### background.jpg
+Use your own. Will add a setting for this.
+
+### background_sidebar.jpg
+The background texture for slide sidebar.
 
 ### favicon.ico
 The favicon is the icon shown to the left of the URL at the top of your browser window.
