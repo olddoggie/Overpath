@@ -152,17 +152,27 @@ var titlechange = function() {
     //all the stuff in your current scroll function
     var scrollPosition = $(window).scrollTop()+320;
 	$('.index article').each(function(){
-		if(scrollPosition > $(this).offset().top){
+		if(scrollPosition > $(this).offset().top || scrollPosition == $(this).offset().top){
 			if($(this).next().length != 0){
-				if(scrollPosition < $(this).next().offset().top && $(this).find('.moments_header').css('display') === 'none'){
-					$('.visible_header').fadeOut(250).removeClass('visible_header');
-					$(this).find('.moments_header').fadeIn(250).addClass('visible_header');
+				if(scrollPosition < $(this).next().offset().top && $(this).find('.moments_header').css('display') == 'none'){
+					$('.visible_header').animate({opacity: 0},250,function(){
+						$(this).css({display: 'none'});
+						$(this).removeClass('visible_header');
+					});
+					$(this).find('.moments_header').css({display: 'block'}).animate({opacity: 1},250,function(){
+						$(this).addClass('visible_header');
+					});
 					return false;
 				}
-			}else if($(this).find('.moments_header').css('display') === 'none'){
-				$('.visible_header').fadeOut(250).removeClass('visible_header');
-					$(this).find('.moments_header').fadeIn(250).addClass('visible_header');
-					return false;
+			}else if($(this).find('.moments_header').css('display') == 'none'){
+				$('.visible_header').animate({opacity: 0},250,function(){
+					$(this).css({display: 'none'});
+					$(this).removeClass('visible_header');
+				});
+				$(this).find('.moments_header').css({display: 'block'}).animate({opacity: 1},250,function(){
+					$(this).addClass('visible_header');
+				});
+				return false;
 			}
 			
 		}
@@ -172,7 +182,8 @@ var titlechange = function() {
 
 $(function() {
 	prepareDOM();
-	//Display the background only when it's downloaded in the cache
+	//$(".sidebartoggle").pageslide({ direction: "left", modal: false });
+	//Display the background after it's downloaded in the cache
 	//TODO: set the background customizable
 	$('<img/>').attr('src', 'http://xiaolife.com/wordpress/wp-content/themes/overpath/images/background.jpg').load(function() {
 		$('.dimmer').css({opacity: 0.25});
