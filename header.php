@@ -72,7 +72,7 @@
 	        <a class="logo" href="<?php echo get_option('home'); ?>/"><?php bloginfo('name'); ?></a>
 	    </header>
 	    <nav id="nav-main" role="navigation">
-	    	<a href="javascript:$.pageslide({ direction: 'left' ,href: '#sidebar' });"><div class="action" id="loader">Sidebar</div></a>
+	    	<a href="javascript:toggleSidebar();"><div class="action" id="loader">Sidebar</div></a>
             <?php wp_nav_menu(array('theme_location' => 'primary_navigation')); ?>
      	</nav>
    </div>
