@@ -43,7 +43,7 @@
   <!-- Main CSS -->
   <?php versioned_stylesheet($GLOBALS["TEMPLATE_RELATIVE_URL"]."style.css") ?>
   <!-- PageSlide CSS -->
-  <?php versioned_stylesheet($GLOBALS["TEMPLATE_RELATIVE_URL"]."css/jquery.pageslide.css") ?>
+  <?php versioned_stylesheet($GLOBALS["TEMPLATE_RELATIVE_URL"]."jquery.pageslide.css") ?>
   
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
   
