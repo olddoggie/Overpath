@@ -182,7 +182,6 @@ var titlechange = function() {
 
 $(function() {
 	prepareDOM();
-	//$(".sidebartoggle").pageslide({ direction: "left", modal: false });
 	//Display the background after it's downloaded in the cache
 	//TODO: set the background customizable
 	$('<img/>').attr('src', 'http://xiaolife.com/wordpress/wp-content/themes/overpath/images/background.jpg').load(function() {

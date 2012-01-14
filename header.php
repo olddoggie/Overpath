@@ -42,7 +42,9 @@
   
   <!-- Main CSS -->
   <?php versioned_stylesheet($GLOBALS["TEMPLATE_RELATIVE_URL"]."style.css") ?>
-
+  <!-- PageSlide CSS -->
+  <?php versioned_stylesheet($GLOBALS["TEMPLATE_RELATIVE_URL"]."css/jquery.pageslide.css") ?>
+  
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
   
   <!-- Wordpress Head Items -->
@@ -70,7 +72,7 @@
 	        <a class="logo" href="<?php echo get_option('home'); ?>/"><?php bloginfo('name'); ?></a>
 	    </header>
 	    <nav id="nav-main" role="navigation">
-	    	<div class="action" id="loader"></div>
+	    	<a href="javascript:$.pageslide({ direction: 'left' ,href: '#sidebar' });"><div class="action" id="loader">Sidebar</div></a>
             <?php wp_nav_menu(array('theme_location' => 'primary_navigation')); ?>
      	</nav>
    </div>

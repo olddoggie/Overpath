@@ -66,6 +66,7 @@ body {
     font-smoothing: antialiased;
     font-weight: normal;
     line-height: 18px;
+    margin: 0px;
 }
 a { text-decoration: none }
 .input-text,
@@ -98,6 +99,7 @@ textarea#comment {
     vertical-align: middle;
     width: 100%;
 }
+/*
 input-text.submit,
 .input-password.submit,
 textarea.submit,
@@ -106,6 +108,7 @@ select.submit { background: #fff url('/static/images/form-submit-disclosure.png'
     background: url('/static/images/select-arrow.png') no-repeat 100% 50%;
     width: 100%;
 }
+*/
 .input-submit {
     background: #076faf;
     background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0,#076faf),color-stop(1,#1b8bce));
@@ -975,4 +978,23 @@ div.timeline-point {
 .previous_post_link {
     float: right;
     text-align: left;
+}
+
+/* Sidebar */
+#sidebar a,#sidebar a:active,#sidebar a:visited {
+	color: white;
+	text-shadow: 0 -1px black; 
+}
+#sidebar h2 {
+	color: #c9beaa;
+	font-size: 14px;
+	font-weight: normal;
+	text-shadow: 0 -1px black; 
+	display: block;
+	width: 100px;
+	line-height: 30px;
+}
+#sidebar li {
+	list-style: none;
+	margin: 9px 0;
 }

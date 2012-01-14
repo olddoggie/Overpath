@@ -67,5 +67,6 @@ get_header(); ?>
 </div>
 <div id="sub-main" role="main" class="single" style="opacity:0"></div>
 
+<?php get_sidebar(); ?>
 <?php get_footer();
 endif; ?>
