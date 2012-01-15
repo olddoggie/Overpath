@@ -7,7 +7,7 @@
 if(!is_pjax()):
 get_header(); ?>
 
-<div class="horizontal all-anime-enable" id="timeline"></div>
+<div class="horizontal" id="timeline"></div>
 
 <div id="main" role="main" class="single">
  <?php endif; ?>
