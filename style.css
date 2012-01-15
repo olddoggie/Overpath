@@ -906,11 +906,13 @@ input[type="submit"] {
 article .moments_nav {
     position: fixed;
     top: 424px;
-    left: 0px;
     width: 100%;
     z-index: 0;
+    left: 0px;
     text-align: center;
     text-overflow: ellipsis;
+    display: inline;
+    white-space: nowrap;
 }
 .moments_nav a,
 .moments_nav a:visited {
@@ -926,28 +928,32 @@ article .moments_nav {
 }
 .moments_nav a:hover { opacity: 0.75 }
 .moments_nav a:active { opacity: 1 }
-.center_wrapper {
-    margin: auto;
-    padding-left: 100px;
-    width: 1000px;
-    display: relative;
-}
 .next_post_link,
 .previous_post_link {
     color: rgba(255, 255, 255, 0.25);
     display: inline-block;
-    position: absolute;
+    height: 20px;
+    overflow-x: visible;
     text-overflow: ellipsis;
-    width: 180px;
     z-index: 10;
 }
 .next_post_link {
-    margin-left: -350px;
     text-align: right;
+    width: 200px;
+    max-width: 27%;
+    min-width: 10%;
+}
+.placeholder {
+	opacity: 0;
+	display:inline-block ;
+	height: 20px;
+	width: 620px;
 }
 .previous_post_link {
-    margin-left: 450px;
     text-align: left;
+    width: 100px;
+    max-width: 18%;
+    min-width: 8%;
 }
 .single .moment-arrow { position: fixed }
 .single .timeline-arrow {
