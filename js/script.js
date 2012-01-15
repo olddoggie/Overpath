@@ -92,12 +92,28 @@ console.log('display_text called');
 function display_image(){
 console.log('display_image called');
 	$('.image-pre-opacity-zero').css({ opacity:1 });
+	$('.image-pre-opacity-zero-holder *').css({ opacity:1 });
 }
 
 //display image when window finishes all resource loading
 $(window).load(function() {
 	display_image();
 })
+
+//Fade unnecessary item before horizontal slide animation
+var hide_before_slide = function(){
+	$('#timeline').addClass('loading');
+	$('div.timeline-arrow').css({ opacity:0 });
+	$('#main nav.moments_nav').css({ opacity:0 });
+	$('h2.text-pre-opacity-zero').css({ opacity:0 });
+	$('.image-pre-opacity-zero-holder *').css({ opacity:0 });
+}
+var display_after_slide = function(){
+	$('div.timeline-arrow').css({ opacity:1 });
+	display_text();
+	$('h2.text-pre-opacity-zero').css({ opacity:1 });
+	display_image();
+}
 
 /* Single.php navigation pjax */
 $('nav.moments_nav a').pjax('#sub-main', { timeout: 3000, error: function(xhr, err){
@@ -106,9 +122,7 @@ $('nav.moments_nav a').pjax('#sub-main', { timeout: 3000, error: function(xhr, e
   		console.log( xhr );
 	}
 }).live('click', function(){
-	//Make the timeline part animate and hide the current navigation items when loading
-	$('#timeline').addClass('loading');
-	$('#main nav.moments_nav').fadeOut(500);
+	hide_before_slide();
 });
 //handle all the pjax:end event, do the main animation part based on the target class. Together with the div#id
 $('#container').bind('pjax:end', function(event) {
@@ -125,8 +139,7 @@ $('#container').bind('pjax:end', function(event) {
 	}else if(event.target.className == 'index'){ //Click the title and the page navigates from Index.php to Single.php
 	//console.log('index condition')
 		prepareDOM();
-		display_text();
-		display_image();
+		display_after_slide();
 		init_comment();
 		//Mark that it's now a single page instead of an index page
 		$('#main').removeClass('index').addClass('single').after('<div id="sub-main" role="main" class="single" style="opacity:0"></div>');
@@ -187,6 +200,7 @@ $(function() {
 	$('<img/>').attr('src', 'http://xiaolife.com/wordpress/wp-content/themes/overpath/images/background.jpg').load(function() {
 		$('.dimmer').css({opacity: 0.25});
 	});
+	$('div.timeline-arrow').css({ opacity:1 });
 	display_text();
 	
 	if($('#main').hasClass('index')){
@@ -215,6 +229,7 @@ $(function() {
 			$('#sub-main').attr('style','');//.css({ opacity:1 });
 			prepareDOM();
 			display_text();
+			$('div.timeline-arrow').css({ opacity:1 });
 			display_image();
 		}
 	})

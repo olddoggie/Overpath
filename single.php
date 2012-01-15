@@ -16,7 +16,7 @@ get_header(); ?>
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
   <article <?php post_class() ?> id="post-<?php the_ID(); ?>">
     <header class="moments_header">
-    <div class="user-avatar tooltip-target image-pre-opacity-zero">
+    <div class="user-avatar tooltip-target image-pre-opacity-zero-holder">
         <?php echo get_avatar(get_the_author_meta('user_email'), 60); ?>
         <b></b>
         <div class="tooltip-block" style="opacity: 0; display: none; position: static; top: -40px; ">
