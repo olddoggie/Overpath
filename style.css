@@ -151,8 +151,9 @@ blockquote {
 }
 .moment-thought ol,
 .moment-thought ul { margin-bottom: 20px }
-.moment-thought>.mejs-container {
-	display: none;
+.moment-thought .mejs-video {
+	position: absolute;
+	opacity: 0;
 }
 /* Animation */
 .border-anime-enable {
@@ -697,6 +698,11 @@ h2.article-title {
 }
 .moment-thought .video_controller:hover .overlay {
 	opacity: 1;
+}
+.mejs-poster img {
+	width: auto;
+	height: 100%;
+	margin: 0 auto;
 }
 /* Map */
 .place-map {
