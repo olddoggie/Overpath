@@ -87,7 +87,7 @@ console.log('prepareDOM called');
 	$('.mejs-video').each(function(){
 		var video_id = $(this).prop('id');
 		var controller_id = video_id +'_controller';
-		console.log($('#'+video_id).find('.mejs-poster').length);
+		$(this).find('.mejs-poster img').attr({'width':'','height':''});
 		if($('#'+video_id).find('.mejs-poster').length == 1){
 			$(this).before('<button class="video_controller" id="'+ controller_id +'"><span class="overlay"></span>'+$('#'+video_id).find('.mejs-poster').first().html()+'</button>');
 		}else{
