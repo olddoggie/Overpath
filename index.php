@@ -6,7 +6,7 @@
 //TODO: support pjax click on Logo and animation from * to Index.php
 get_header(); ?>
 
-<div class="vertical all-anime-enable" id="timeline"></div>
+<div class="vertical" id="timeline"></div>
 
 <div id="main" role="main" class="index">
   <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
