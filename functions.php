@@ -34,7 +34,8 @@ automatic_feed_links();
 // Widgetized Sidebar HTML5 Markup
 if ( function_exists('register_sidebar') ) {
 	register_sidebar(array(
-		'before_widget' => '<section>',
+		'name' => 'Slide Sidebar',
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget' => '</section>',
 		'before_title' => '<h2 class="widgettitle">',
 		'after_title' => '</h2>',
