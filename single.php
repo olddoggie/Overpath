@@ -47,13 +47,18 @@ get_header(); ?>
 	    </section>
     </div>
     
-    <nav class="moments_nav">
+    <!--
+<nav class="moments_nav">
      <div class="center_wrapper">
       <div class="next_post_link text-pre-opacity-zero"><?php next_post_link('%link &raquo;') ?></div>
       <div class="previous_post_link text-pre-opacity-zero"><?php previous_post_link('&laquo; %link') ?></div>
      </div>
     </nav>
-    
+-->
+	<nav class="moments_nav">
+		<div class="next_post_link text-pre-opacity-zero"><?php next_post_link('%link &raquo;') ?></div>
+		<div class="previous_post_link text-pre-opacity-zero"><?php previous_post_link('&laquo; %link') ?></div>
+	</nav> 
 	<!--<div class="seen-it-container"></div>-->
   </article>
 

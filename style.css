@@ -909,6 +909,8 @@ article .moments_nav {
     left: 0px;
     width: 100%;
     z-index: 0;
+    text-align: center;
+    text-overflow: ellipsis;
 }
 .moments_nav a,
 .moments_nav a:visited {
@@ -934,16 +936,21 @@ article .moments_nav {
 .previous_post_link {
     color: rgba(255, 255, 255, 0.25);
     display: inline-block;
+    position: absolute;
+    text-overflow: ellipsis;
     width: 180px;
     z-index: 10;
 }
 .next_post_link {
-    float: left;
+    margin-left: -350px;
     text-align: right;
+}
+.previous_post_link {
+    margin-left: 450px;
+    text-align: left;
 }
 .single .moment-arrow { position: fixed }
 .single .timeline-arrow {
-	
     border-bottom: 7px solid transparent;
     border-left: 7px solid whiteSmoke;
     border-top: 7px solid transparent;
@@ -974,10 +981,6 @@ div.timeline-point {
     width: 14px;
     border-radius: 12px;
     background-color: rgba(255, 255, 255, 1);
-}
-.previous_post_link {
-    float: right;
-    text-align: left;
 }
 
 /* Sidebar */
