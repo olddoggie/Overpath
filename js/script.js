@@ -74,12 +74,29 @@ var init_comment = function(){
 //Do a lot things when page loaded
 function prepareDOM(){
 console.log('prepareDOM called');
+	//Set circle for first post
 	if(!$('.next_post_link').html()) {
 		$('.next_post_link').html("<div class='timeline-point'></div>");
 	};
+	//Append geo map to post if exist 
 	$('a.geolocation-link').each(function(){
 		$(this).after('<div class="place-map" style="background: url(https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7Csize:mid%7C'+$(this).attr('name')+'&amp;zoom=11&amp;size=600x100&amp;sensor=false)"></div>').hide();
 		$(this).parentsUntil('.moment-block').find('span.moment-author').after(' '+$(this).html());
+	});
+	//Add lightbox support for MediaElement.js video
+	$('.mejs-video').each(function(){
+		var video_id = $(this).prop('id');
+		var controller_id = video_id +'_controller';
+		console.log($('#'+video_id).find('.mejs-poster').length);
+		if($('#'+video_id).find('.mejs-poster').length == 1){
+			$(this).before('<button class="video_controller" id="'+ controller_id +'"><span class="overlay"></span>'+$('#'+video_id).find('.mejs-poster').first().html()+'</button>');
+		}else{
+			$(this).before('<button id="'+ controller_id +'">Play Video</button>');
+		}
+		$('#'+controller_id).click(function(e){
+			$('#'+video_id).lightbox_me({centered:true});
+			e.preventDefault();
+		})
 	});
 }
 //Fade in the pre-hidede text

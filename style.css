@@ -151,6 +151,9 @@ blockquote {
 }
 .moment-thought ol,
 .moment-thought ul { margin-bottom: 20px }
+.moment-thought>.mejs-container {
+	display: none;
+}
 /* Animation */
 .border-anime-enable {
     -webkit-transition: left,border 0.5s ease-in-out;
@@ -669,6 +672,31 @@ h2.article-title {
 .moment-thought p {
     line-height: 1.6;
     margin-bottom: 20px;
+}
+.moment-thought .video_controller {
+	margin: 0 auto;
+	padding: 0;
+	border: none;
+	max-width: 570px;
+	height: auto;
+	position: relative;
+}
+.moment-thought .video_controller .overlay {
+	-webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    -o-transition: opacity 0.2s ease-in-out;
+    -ms-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+	background: url(images/video-play-button.png) center center no-repeat;
+	display: block;
+	height: 100%;
+	width: 100%;
+	position:absolute;
+	margin: auto;
+	opacity: 0.6;
+}
+.moment-thought .video_controller:hover .overlay {
+	opacity: 1;
 }
 /* Map */
 .place-map {
