@@ -222,21 +222,22 @@ $(function() {
 	$('html').smoothScroll();
 });
 
-
-var toggleSidebar = function(){
-	$.pageslide({ direction: 'left' ,href: '#sidebar' });
-	/*
-console.log('toggle sidebar');
-	$('#pageslide a').pjax('#main',{timeout: 3000, error: function(xhr, err){
+var widget_recent_entries_pjax = function(){
+	console.log('widget_recent_entries_pjax called');
+	$('section.widget_recent_entries a').pjax('#main',{timeout: 3000, error: function(xhr, err){
 		//TODO: Need a better way to tell the failure, or better to reload the page
   		$('.moment-thought').html('Failed');
   		console.log( xhr );
 		}
 	}).live('click', function(){
-	console.log('pjax!');
+		console.log('pjax!');
 		$('#timeline').removeClass('vertical').addClass('horizontal');
-	}
-	)
-*/
+	});
+}
+
+var toggleSidebar = function(){
+	$.pageslide({ direction: 'left' ,href: '#sidebar' });
+	console.log($('#pageslide section.widget_recent_entries a:first'));
+	setTimeout(widget_recent_entries_pjax, 500);
 }
 
