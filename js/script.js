@@ -136,14 +136,19 @@ var display_after_slide = function(){
 /* Single.php navigation pjax */
 $('nav.moments_nav a').pjax('#sub-main', { timeout: 3000, error: function(xhr, err){
 		//TODO: Need a better way to tell the failure, or better to reload the page
-  		$('.moment-thought').html('Failed');
-  		console.log( xhr );
+  		//$('.moment-thought').html('Failed');
+  		display_after_slide();
 	}
 }).live('click', function(){
 	hide_before_slide();
 });
 //handle all the pjax:end event, do the main animation part based on the target class. Together with the div#id
 $('#container').bind('pjax:end', function(event) {
+	console.log(event);
+	var xhr = $.pjax.xhr;
+	if (xhr && xhr.readyState < 4) {
+		return;
+	}
 	if(event.target.className == 'single'){
 		//Animation done without animate()
 		//left to right && right to left animation
@@ -167,8 +172,8 @@ $('#container').bind('pjax:end', function(event) {
 /* Index.php title pjax */
 $('.index .article-title a').pjax('#main',{timeout: 3000, error: function(xhr, err){
 		//TODO: Need a better way to tell the failure, or better to reload the page
-  		$('.moment-thought').html('Failed');
-  		console.log( xhr );
+  		//$('.moment-thought').html('Failed');
+  		display_after_slide();
 		}
 	}).live('click', function(){
 		$('#timeline').removeClass('vertical').addClass('horizontal');
@@ -235,7 +240,6 @@ $(function() {
 	}
 	//Listens to keyframe animation event so when pjax main animation finishes, do the trival things
 	$('html').on('webkitAnimationEnd mozAnimationEnd oAnimationEnd MSAnimationEnd animationend', function(event){
-		console.log(event.originalEvent);
 		if(event.originalEvent.animationName == 'article-right-center' || event.originalEvent.animationName == 'article-left-center'){
 			$('#timeline').removeClass('loading');
 			$('#main').attr("id","temp-sub-main");
