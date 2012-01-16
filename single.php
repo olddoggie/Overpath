@@ -7,7 +7,7 @@
 if(!is_pjax()):
 get_header(); ?>
 
-<div class="horizontal" id="timeline"></div>
+<div class="horizontal pre_hide" id="timeline"></div>
 
 <div id="main" role="main" class="single">
  <?php endif; ?>

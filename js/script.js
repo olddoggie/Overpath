@@ -278,3 +278,6 @@ var toggleSidebar = function(){
 	setTimeout(widget_recent_entries_pjax, 500);
 }
 
+//Animate and show timeline when browser load the script
+$('#timeline').removeClass('pre_hide');
+

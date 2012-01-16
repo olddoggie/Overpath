@@ -427,6 +427,11 @@ blockquote {
         100%   { top: 418px; height: 6px; -ms-box-shadow: none; background: rgba(255, 255, 255, 0.25);}
 }
 #timeline.horizontal {
+	-webkit-transition: width 1s ease-out;
+    -moz-transition: width 1s ease-out;
+    -o-transition: width 1s ease-out;
+    -ms-transition: width 1s ease-out;
+    transition: width 1s ease-out;
 	-webkit-animation: timelineIntoHorizontal 2s;
 	-moz-animation:    timelineIntoHorizontal 2s;
 	-ms-animation:     timelineIntoHorizontal 2s;
@@ -435,12 +440,23 @@ blockquote {
     width: 100%;
     height: 6px;
 }
+#timeline.horizontal.pre_hide {
+	width: 1%;
+}
 #timeline.vertical {
+	-webkit-transition: height 1s ease-out;
+    -moz-transition: height 1s ease-out;
+    -o-transition: height 1s ease-out;
+    -ms-transition: height 1s ease-out;
+    transition: height 1s ease-out;
     top: 0px;
     left: 50%;
     margin-left: -150px;
     width: 6px;
     height: 100%;
+}
+#timeline.vertical.pre_hide {
+	height: 1%;
 }
 @-webkit-keyframes timelineAnimation {
         0%   { background-position-x: -600px; }
