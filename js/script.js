@@ -85,7 +85,7 @@ console.log('prepareDOM called');
 	});
 	//Add lightbox support for MediaElement js video
 	$('.mejs-video').each(function(){
-		$(this).css({left:'-9999px'});
+		$(this).css({left:'-9999px',top: '-9999px'});
 		var e_video_id = $(this).prop('id');
 		var e_controller_id = e_video_id +'_controller';
 		$(this).find('.mejs-poster img').attr({'width':'','height':''});
