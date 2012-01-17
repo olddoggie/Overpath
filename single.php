@@ -46,21 +46,12 @@ get_header(); ?>
 		    <?php comments_template(); ?>
 	    </section>
     </div>
-    
-    <!--
-<nav class="moments_nav">
-     <div class="center_wrapper">
-      <div class="next_post_link text-pre-opacity-zero"><?php next_post_link('%link &raquo;') ?></div>
-      <div class="previous_post_link text-pre-opacity-zero"><?php previous_post_link('&laquo; %link') ?></div>
-     </div>
-    </nav>
--->
+
 	<nav class="moments_nav">
 		<p class="next_post_link text-pre-opacity-zero"><?php next_post_link('%link &raquo;') ?></p>
 		<p class="placeholder"><?php the_title(); ?></p>
 		<p class="previous_post_link text-pre-opacity-zero"><?php previous_post_link('&laquo; %link') ?></p>
 	</nav> 
-	<!--<div class="seen-it-container"></div>-->
   </article>
 
 <?php endwhile; else: ?>
