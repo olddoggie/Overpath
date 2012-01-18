@@ -127,6 +127,7 @@ var hide_before_slide = function(){
 	$('.image-pre-opacity-zero-holder *').css({ opacity:0 });
 }
 var display_after_slide = function(){
+	$('#timeline').removeClass('loading');
 	$('div.timeline-arrow').css({ opacity:1 });
 	display_text();
 	$('h2.text-pre-opacity-zero').css({ opacity:1 });
@@ -138,11 +139,9 @@ $('nav.moments_nav a').pjax('#sub-main', { timeout: 3000, error: function(xhr, e
 		//TODO: Need a better way to tell the failure, or better to reload the page
   		//$('.moment-thought').html('Failed');
   		display_after_slide();
-  		$('#timeline').removeClass('loading');
 	}
 }).live('click', function(){
 	hide_before_slide();
-	$('#timeline').addClass('loading');
 });
 //handle all the pjax:end event, do the main animation part based on the target class. Together with the div#id
 $('#container').bind('pjax:end', function(event) {
@@ -244,7 +243,7 @@ $(function() {
 	//Listens to keyframe animation event so when pjax main animation finishes, do the trival things
 	$('html').on('webkitAnimationEnd mozAnimationEnd oAnimationEnd MSAnimationEnd animationend', function(event){
 		if(event.originalEvent.animationName == 'article-right-center' || event.originalEvent.animationName == 'article-left-center'){
-			$('#timeline').removeClass('loading');
+			//$('#timeline').removeClass('loading');
 			$('#main').attr("id","temp-sub-main");
 			$('#sub-main').attr('id','main');
 			$('#temp-sub-main').attr('id','sub-main');
@@ -253,9 +252,7 @@ $(function() {
 			$('#main').attr('style','');//css({ opacity:0 });
 			$('#sub-main').attr('style','');//.css({ opacity:1 });
 			prepareDOM();
-			display_text();
-			$('div.timeline-arrow').css({ opacity:1 });
-			display_image();
+			display_after_slide();
 		}
 	})
 	//Make the page smooth scroll, mainly for the comment button.
