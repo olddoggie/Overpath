@@ -138,9 +138,11 @@ $('nav.moments_nav a').pjax('#sub-main', { timeout: 3000, error: function(xhr, e
 		//TODO: Need a better way to tell the failure, or better to reload the page
   		//$('.moment-thought').html('Failed');
   		display_after_slide();
+  		$('#timeline').removeClass('loading');
 	}
 }).live('click', function(){
 	hide_before_slide();
+	$('#timeline').addClass('loading');
 });
 //handle all the pjax:end event, do the main animation part based on the target class. Together with the div#id
 $('#container').bind('pjax:end', function(event) {
@@ -174,6 +176,7 @@ $('.index .article-title a').pjax('#main',{timeout: 3000, error: function(xhr, e
 		//TODO: Need a better way to tell the failure, or better to reload the page
   		//$('.moment-thought').html('Failed');
   		display_after_slide();
+  		$('#timeline').removeClass('horizontal').addClass('vertical');
 		}
 	}).live('click', function(){
 		$('#timeline').removeClass('vertical').addClass('horizontal');
@@ -259,23 +262,34 @@ $(function() {
 	$('html').smoothScroll();
 });
 
-var widget_recent_entries_pjax = function(){
-	console.log('widget_recent_entries_pjax called');
-	$('section.widget_recent_entries a').pjax('#main',{timeout: 3000, error: function(xhr, err){
-		//TODO: Need a better way to tell the failure, or better to reload the page
-  		$('.moment-thought').html('Failed');
-  		console.log( xhr );
+$('section.widget_recent_entries a').each(function(){
+	$(this).click(function(e){
+		e.preventDefault();
+	});
+	$(this).pjax('#sub-main',{timeout: 3000, error: 
+		function(xhr, err){
+			$('#timeline').removeClass('loading');
 		}
 	}).live('click', function(){
 		console.log('pjax!');
 		$('#timeline').removeClass('vertical').addClass('horizontal');
 	});
-}
+});
 
 var toggleSidebar = function(){
 	$.pageslide({ direction: 'left' ,href: '#sidebar' });
-	console.log($('#pageslide section.widget_recent_entries a:first'));
-	setTimeout(widget_recent_entries_pjax, 500);
+	//console.log($('#pageslide section.widget_recent_entries a:first'));
+	/*
+var scrollPosition = [
+        self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
+        self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
+      ];
+      var html = jQuery('html'); // it would make more sense to apply this to body, but IE7 won't have that
+      html.data('scroll-position', scrollPosition);
+      html.data('previous-overflow', html.css('overflow'));
+      html.css('overflow', 'hidden');
+      window.scrollTo(scrollPosition[0], scrollPosition[1]);
+*/
 }
 
 //Animate and show timeline when browser load the script
