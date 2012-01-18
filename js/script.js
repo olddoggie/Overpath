@@ -129,6 +129,7 @@ var hide_before_slide = function(){
 var display_after_slide = function(){
 	$('#timeline').removeClass('loading');
 	$('div.timeline-arrow').css({ opacity:1 });
+	$('#main nav.moments_nav').css({ opacity:1 });
 	display_text();
 	$('h2.text-pre-opacity-zero').css({ opacity:1 });
 	display_image();
