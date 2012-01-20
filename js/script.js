@@ -73,7 +73,6 @@ var init_comment = function(){
 
 //Do a lot things when page loaded
 function prepareDOM(){
-console.log('prepareDOM called');
 	//Set circle for first post
 	if(!$('.next_post_link').html()) {
 		$('.next_post_link').html("<div class='timeline-point'></div>");
@@ -102,13 +101,11 @@ console.log('prepareDOM called');
 }
 //Fade in the pre-hidede text
 function display_text(){
-console.log('display_text called');
 	$('.text-pre-opacity-zero').css({ opacity:1 });
 	$('.first-load-opacity-zero').css({ opacity:1 });
 }
 //Fade in the pre-hidede image
 function display_image(){
-console.log('display_image called');
 	$('.image-pre-opacity-zero').css({ opacity:1 });
 	$('.image-pre-opacity-zero-holder *').css({ opacity:1 });
 }
@@ -146,7 +143,6 @@ $('nav.moments_nav a').pjax('#sub-main', { timeout: 3000, error: function(xhr, e
 });
 //handle all the pjax:end event, do the main animation part based on the target class. Together with the div#id
 $('#container').bind('pjax:end', function(event) {
-	console.log(event);
 	var xhr = $.pjax.xhr;
 	if (xhr && xhr.readyState < 4) {
 		return;
@@ -244,16 +240,16 @@ $(function() {
 	//Listens to keyframe animation event so when pjax main animation finishes, do the trival things
 	$('html').on('webkitAnimationEnd mozAnimationEnd oAnimationEnd MSAnimationEnd animationend', function(event){
 		if(event.originalEvent.animationName == 'article-right-center' || event.originalEvent.animationName == 'article-left-center'){
-			//$('#timeline').removeClass('loading');
 			$('#main').attr("id","temp-sub-main");
 			$('#sub-main').attr('id','main');
 			$('#temp-sub-main').attr('id','sub-main');
 			
 			$('#sub-main').empty();
-			$('#main').attr('style','');//css({ opacity:0 });
-			$('#sub-main').attr('style','');//.css({ opacity:1 });
+			$('#main').attr('style','');
+			$('#sub-main').attr('style','');
 			prepareDOM();
-			display_after_slide();
+			//Set a very short time wait to avoid graphic blink in Safari
+			setTimeout(display_after_slide,1);
 		}
 	})
 	//Make the page smooth scroll, mainly for the comment button.

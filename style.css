@@ -171,20 +171,20 @@ blockquote {
     transition: height 0.5s ease-in-out;
 }
 .text-pre-opacity-zero, .text-pre-opacity-zero, .first-load-opacity-zero {
-	-webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    -o-transition: opacity 0.5s ease-in-out;
-    -ms-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
+	-webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    -o-transition: opacity 0.2s ease-in-out;
+    -ms-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
     opacity: 0;
 }
 .image-pre-opacity-zero-holder * {
-	-webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    -o-transition: opacity 0.5s ease-in-out;
-    -ms-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
-	opacity: 0;
+	-webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    -o-transition: opacity 0.2s ease-in-out;
+    -ms-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+    opacity: 0;
 }
 
 .all-anime-enable {
@@ -247,10 +247,10 @@ blockquote {
 	100% { -ms-transform: translateX(0px); opacity:1; }
 }
 #main.single, #sub-main.single {
-	transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-	-webkit-transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-	-moz-transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-	-ms-transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+	transition-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+	-webkit-transition-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+	-moz-transition-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+	-ms-transition-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955);
 }
 /* Background */
 .background {
