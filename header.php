@@ -26,7 +26,7 @@
   initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
   maximum-scale = 1.0 retains dimensions instead of zooming in if page width < device width
   -->
-  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 
   <!-- Place favicon.ico and apple-touch-icon.png in the root of your domain and delete these references -->
   <link rel="shortcut icon" href="<?php echo home_url() ?>/favicon.ico" />
@@ -51,6 +51,9 @@
   <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
   <?php wp_head(); ?>
+  
+  <script type="text/javascript" src="http://use.typekit.com/bvy7nos.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
 </head>
 
@@ -69,7 +72,7 @@
  　 <div class="shared_header">
 	 	<header role="banner" class="blog-logo">
 	        <span class="description"><?php bloginfo('description'); ?></span>
-	        <a class="logo" href="<?php echo get_option('home'); ?>/"><?php bloginfo('name'); ?></a>
+	        <a class="logo tk-coquette" href="<?php echo get_option('home'); ?>/"><?php bloginfo('name'); ?></a>
 	    </header>
 	    <!--
 <nav id="nav-main" role="navigation">
