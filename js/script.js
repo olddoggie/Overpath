@@ -69,14 +69,49 @@ var init_comment = function(){
 //	$('textarea#comment').focus();
 //});
 
+//Global Variable Defined Here
+//currentPjaxPosition used to save where pjax come from
+var currentPjaxPosition, currentPjaxTarget;
+
 /* Page Load part */
 
-//Do a lot things when page loaded
+//Do a lot things when page loaded, should be called when timeline or article changed
 function prepareDOM(){
-	//Set circle for first post
-	if(!$('.next_post_link').html()) {
-		$('.next_post_link').html("<div class='timeline-point'></div>");
-	};
+	//Refact
+	if($('#main').hasClass('index')){
+		//Refact $('.index .article-title a').pjax
+		$('.index .article-title a').pjax('#main',{timeout: 3000});
+		
+		titlechange();
+		$(window).scroll(function () {
+			if (timer) {
+  		      clearTimeout(timer);
+ 		       timer = 0;
+ 		   }
+ 		   timer = setTimeout(titlechange, delay);
+		});
+		currentPjaxPosition = "index";
+	}else if($('#main').hasClass('single')){
+		//Set circle for first post
+		if(!$('.next_post_link').html()) {
+			$('.next_post_link').html("<div class='timeline-point'></div>");
+		};
+		//Refact $('nav.moments_nav a').pjax
+		$('nav.moments_nav a').pjax('#sub-main', { timeout: 3000});
+		
+		$('section.widget_recent_entries a').each(function(){
+			$(this).click(function(e){
+				e.preventDefault();
+			});
+			$(this).pjax('#sub-main',{timeout: 3000});
+		});
+		
+		currentPjaxPosition = "single";
+		
+		init_comment();
+		
+	}
+	
 	//Append geo map to post if exist 
 	$('a.geolocation-link').each(function(){
 		$(this).after('<div class="place-map" style="background: url(https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7Csize:mid%7C'+$(this).attr('name')+'&amp;zoom=11&amp;size=600x100&amp;sensor=false)"></div>').hide();
@@ -99,12 +134,12 @@ function prepareDOM(){
 		})
 	});
 }
-//Fade in the pre-hidede text
+//Fade in the pre-hidden text, should be called after new article loaded
 function display_text(){
 	$('.text-pre-opacity-zero').css({ opacity:1 });
 	$('.first-load-opacity-zero').css({ opacity:1 });
 }
-//Fade in the pre-hidede image
+//Fade in the pre-hidden image, should be called after new article loaded
 function display_image(){
 	$('.image-pre-opacity-zero').css({ opacity:1 });
 	$('.image-pre-opacity-zero-holder *').css({ opacity:1 });
@@ -115,7 +150,7 @@ $(window).load(function() {
 	display_image();
 })
 
-//Fade unnecessary item before horizontal slide animation
+//Fade unnecessary item before horizontal slide animation, should be called when article pjax request dispatched
 var hide_before_slide = function(){
 	$('#timeline').addClass('loading');
 	$('div.timeline-arrow').css({ opacity:0 });
@@ -132,52 +167,57 @@ var display_after_slide = function(){
 	display_image();
 }
 
-/* Single.php navigation pjax */
-$('nav.moments_nav a').pjax('#sub-main', { timeout: 3000, error: function(xhr, err){
-		//TODO: Need a better way to tell the failure, or better to reload the page
-  		//$('.moment-thought').html('Failed');
-  		display_after_slide();
+//Refact Slide Animation done without animate()
+function slideTransition(){
+	//left to right && right to left animation
+	if( $('#main>article').attr('id')>$('#sub-main>article').attr('id') ){
+		$('#main').css({ 'animation': 'article-center-left 1000ms forwards','-webkit-animation': 'article-center-left 1000ms forwards','-moz-animation': 'article-center-left 1000ms forwards','-ms-animation': 'article-center-left 1000ms forwards'});
+		$('#sub-main').css({ 'animation': 'article-right-center 1000ms forwards','-webkit-animation': 'article-right-center 1000ms forwards','-moz-animation': 'article-right-center 1000ms forwards','-ms-animation': 'article-right-center 1000ms forwards'});
+	}else{
+		$('#main').css({ 'animation': 'article-center-right 1000ms forwards','-webkit-animation': 'article-center-right 1000ms forwards','-moz-animation': 'article-center-right 1000ms forwards','-ms-animation': 'article-center-right 1000ms forwards'});
+		$('#sub-main').css({ 'animation': 'article-left-center 1000ms forwards','-webkit-animation': 'article-left-center 1000ms forwards','-moz-animation': 'article-left-center 1000ms forwards','-ms-animation': 'article-left-center 1000ms forwards'});
 	}
-}).live('click', function(){
+}
+
+
+//Refact bind all pjax event to document
+$(document).on('pjax:beforeSend',function() { 
+	//Single.php Navigation
 	hide_before_slide();
-});
-//handle all the pjax:end event, do the main animation part based on the target class. Together with the div#id
-$('#container').bind('pjax:end', function(event) {
-	var xhr = $.pjax.xhr;
-	if (xhr && xhr.readyState < 4) {
-		return;
+	//Index.php to Single.php
+	if($('#main').hasClass('index')){
+		$('#timeline').removeClass('vertical').addClass('horizontal');
 	}
-	if(event.target.className == 'single'){
-		//Animation done without animate()
-		//left to right && right to left animation
-		if( $('#main>article').attr('id')>$('#sub-main>article').attr('id') ){
-			$('#main').css({ 'animation': 'article-center-left 1000ms forwards','-webkit-animation': 'article-center-left 1000ms forwards','-moz-animation': 'article-center-left 1000ms forwards','-ms-animation': 'article-center-left 1000ms forwards'});
-			$('#sub-main').css({ 'animation': 'article-right-center 1000ms forwards','-webkit-animation': 'article-right-center 1000ms forwards','-moz-animation': 'article-right-center 1000ms forwards','-ms-animation': 'article-right-center 1000ms forwards'});
-		}else{
-			$('#main').css({ 'animation': 'article-center-right 1000ms forwards','-webkit-animation': 'article-center-right 1000ms forwards','-moz-animation': 'article-center-right 1000ms forwards','-ms-animation': 'article-center-right 1000ms forwards'});
-			$('#sub-main').css({ 'animation': 'article-left-center 1000ms forwards','-webkit-animation': 'article-left-center 1000ms forwards','-moz-animation': 'article-left-center 1000ms forwards','-ms-animation': 'article-left-center 1000ms forwards'});
-		}
-	}else if(event.target.className == 'index'){ //Click the title and the page navigates from Index.php to Single.php
-	//console.log('index condition')
+}).on('pjax:start',     function() { 
+
+}).on('pjax:end',       function() {  
+
+}).on('pjax:error',     function() {  
+	
+}).on('pjax:timeout',   function() {  
+	//Index.php to Single.php
+	display_after_slide();
+	$('#timeline').removeClass('loading');
+	if($('#main').hasClass('index')){
+  		$('#timeline').removeClass('horizontal').addClass('vertical');
+  	}
+}).on('pjax:complete',  function() {  
+
+}).on('pjax:success',   function() {  
+	//Move Old pjax:end event here, Mainly transitions
+	console.log(event.target.className);
+	if(currentPjaxPosition == 'single'){
+		slideTransition();
+	}else if(currentPjaxPosition == 'index'){ //Click the title and the page navigates from Index.php to Single.php
+		//Mark that it's now a single page instead of an index page
+		$('#main').removeClass('index').addClass('single').after('<div id="sub-main" role="main" class="single" style="opacity:0"></div>');
 		prepareDOM();
 		display_after_slide();
 		init_comment();
-		//Mark that it's now a single page instead of an index page
-		$('#main').removeClass('index').addClass('single').after('<div id="sub-main" role="main" class="single" style="opacity:0"></div>');
+
 	}
 	
 });
-/* Index.php title pjax */
-$('.index .article-title a').pjax('#main',{timeout: 3000, error: function(xhr, err){
-		//TODO: Need a better way to tell the failure, or better to reload the page
-  		//$('.moment-thought').html('Failed');
-  		display_after_slide();
-  		$('#timeline').removeClass('horizontal').addClass('vertical');
-		}
-	}).live('click', function(){
-		$('#timeline').removeClass('vertical').addClass('horizontal');
-	}
-)
 
 /* Index.php: change the static title display as page scrolls */
 var timer = 0,
@@ -224,19 +264,7 @@ $(function() {
 	});
 	$('div.timeline-arrow').css({ opacity:1 });
 	display_text();
-	
-	if($('#main').hasClass('index')){
-		titlechange();
-		$(window).scroll(function () {
-			if (timer) {
-  		      clearTimeout(timer);
- 		       timer = 0;
- 		   }
- 		   timer = setTimeout(titlechange, delay);
-		});
-	}else if($('#main').hasClass('single')){
-		init_comment();
-	}
+
 	//Listens to keyframe animation event so when pjax main animation finishes, do the trival things
 	$('html').on('webkitAnimationEnd mozAnimationEnd oAnimationEnd MSAnimationEnd animationend', function(event){
 		if(event.originalEvent.animationName == 'article-right-center' || event.originalEvent.animationName == 'article-left-center'){
@@ -256,34 +284,10 @@ $(function() {
 	$('html').smoothScroll();
 });
 
-$('section.widget_recent_entries a').each(function(){
-	$(this).click(function(e){
-		e.preventDefault();
-	});
-	$(this).pjax('#sub-main',{timeout: 3000, error: 
-		function(xhr, err){
-			$('#timeline').removeClass('loading');
-		}
-	}).live('click', function(){
-		console.log('pjax!');
-		$('#timeline').removeClass('vertical').addClass('horizontal');
-	});
-});
+
 
 var toggleSidebar = function(){
 	$.pageslide({ direction: 'left' ,href: '#sidebar' });
-	//console.log($('#pageslide section.widget_recent_entries a:first'));
-	/*
-var scrollPosition = [
-        self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
-        self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
-      ];
-      var html = jQuery('html'); // it would make more sense to apply this to body, but IE7 won't have that
-      html.data('scroll-position', scrollPosition);
-      html.data('previous-overflow', html.css('overflow'));
-      html.css('overflow', 'hidden');
-      window.scrollTo(scrollPosition[0], scrollPosition[1]);
-*/
 }
 
 //Animate and show timeline when browser load the script
