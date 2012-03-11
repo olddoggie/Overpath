@@ -677,7 +677,7 @@ h2.article-title {
     color: #9C9A9A;
     font-size: 116%;
     line-height: 1.4;
-    padding: 15px;
+    padding: 40px;
     position: relative;
     text-shadow: 0 1px 0 white;
 }
@@ -724,7 +724,7 @@ h2.article-title {
 .place-map {
 	border-top: 1px solid rgba(0, 0, 0, 0.2);
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-	margin-left: -15px;
+	margin-left: -40px;
 	width: 600px;
 	height: 100px;
 }
