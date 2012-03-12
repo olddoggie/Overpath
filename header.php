@@ -71,7 +71,7 @@
   <div id="container">
  　 <div class="shared_header">
 	 	<header role="banner" class="blog-logo">
-	        <span class="description"><?php bloginfo('description'); ?></span>
+	        <span class="description tk-acuta"><?php bloginfo('description'); ?></span>
 	        <a class="logo tk-coquette" href="<?php echo get_option('home'); ?>/"><?php bloginfo('name'); ?></a>
 	    </header>
 	    <!--
