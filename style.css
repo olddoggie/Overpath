@@ -151,10 +151,7 @@ blockquote {
 }
 .moment-thought ol,
 .moment-thought ul { margin-bottom: 20px }
-.moment-thought .mejs-video {
-	position: absolute;
-	opacity: 0;
-}
+
 /* Animation */
 .border-anime-enable {
     -webkit-transition: left,border 0.5s ease-in-out;
@@ -690,6 +687,7 @@ h2.article-title {
 	max-width: 570px;
 	height: auto;
 	position: relative;
+	z-index: 20;
 }
 .moment-thought .video_controller .overlay {
 	-webkit-transition: opacity 0.2s ease-in-out;
@@ -704,14 +702,19 @@ h2.article-title {
 	position:absolute;
 	margin: auto;
 	opacity: 0.6;
+	z-index: 10;
 }
 .moment-thought .video_controller:hover .overlay {
 	opacity: 1;
 }
-.mejs-poster img {
+img.vjs-poster {
 	width: auto;
 	height: 100%;
 	margin: 0 auto;
+}
+
+div.video-js {
+	text-align: center;
 }
 /* Map */
 .place-map {

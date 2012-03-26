@@ -110,6 +110,10 @@ function prepareDOM(){
 		
 		init_comment();
 		
+		//initial audio.js
+		audiojs.events.ready(function() {
+  	 		var as = audiojs.createAll();
+	 	});
 	}
 	
 	//Append geo map to post if exist 
@@ -117,14 +121,19 @@ function prepareDOM(){
 		$(this).after('<div class="place-map" style="background: url(https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7Csize:mid%7C'+$(this).attr('name')+'&amp;zoom=11&amp;size=600x100&amp;sensor=false)"></div>').hide();
 		$(this).parentsUntil('.moment-block').find('span.moment-author').after(' '+$(this).html());
 	});
-	//Add lightbox support for MediaElement js video
-	$('.mejs-video').each(function(){
-		$(this).css({left:'-9999px',top: '-9999px'});
-		var e_video_id = $(this).prop('id');
+	//Add lightbox support for video.js video
+	$('.video-js').each(function(){
+		$(this).css({left:'-9999px',top: '-9999px',position:'absolute'});
+		var e_video_id = 'box_' + Math.floor(Math.random()*111);
+		$(this).attr('id',e_video_id);
+		console.log($(this));
 		var e_controller_id = e_video_id +'_controller';
-		$(this).find('.mejs-poster img').attr({'width':'','height':''});
-		if($('#'+e_video_id).find('.mejs-poster').length == 1){
-			$(this).before('<button class="video_controller" id="'+ e_controller_id +'"><span class="overlay"></span>'+$('#'+e_video_id).find('.mejs-poster').html()+'</button>');
+/* 		$(this).find('.vjs-poster').attr({'width':'','height':''}); */
+		if($(this).find('img.vjs-poster').length == 1){
+			var imagebox = $(this).find('img.vjs-poster').clone(true);
+			$(imagebox).css('height','auto').removeAttr('tabindex');
+			console.log(imagebox);
+			$(this).before('<button class="video_controller" id="'+ e_controller_id +'"><span class="overlay"></span>'+$(imagebox).prop('outerHTML') +'</button>');
 		}else{
 			$(this).before('<button id="'+ e_controller_id +'">Play Video</button>');
 		}
@@ -291,4 +300,5 @@ var toggleSidebar = function(){
 
 //Animate and show timeline when browser load the script
 $('#timeline').removeClass('pre_hide');
+
 
