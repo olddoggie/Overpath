@@ -27,9 +27,9 @@
   <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."js/jquery.transition.min.js") ?>
   <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."js/jquery.smoothscroll.min.js") ?>
   <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."js/jquery.autoresize.min.js") ?>
+  <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."js/audiojs/audio.min.js") ?>
   <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."js/jquery.lightbox_me.min.js") ?>
-  <!-- Mediaelement.js wordpress is not that compitable with pjax, need to include another copy here if used -->
-  <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."mediaelement/mediaelement-and-player.min.js") ?>
+
   <!--<?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."js/plugins.js") ?>-->
   <?php versioned_javascript($GLOBALS["TEMPLATE_RELATIVE_URL"]."js/script.js") ?>
 
