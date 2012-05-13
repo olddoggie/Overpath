@@ -198,7 +198,7 @@ $(document).on('pjax:beforeSend',function() {
 		$('#timeline').removeClass('vertical').addClass('horizontal');
 	}
 }).on('pjax:start',     function() { 
-
+	
 }).on('pjax:end',       function() {  
 
 }).on('pjax:error',     function() {  
@@ -213,7 +213,6 @@ $(document).on('pjax:beforeSend',function() {
 }).on('pjax:complete',  function() {  
 
 }).on('pjax:success',   function() {  
-	//Move Old pjax:end event here, Mainly transitions
 	if(currentPjaxPosition == 'single'){
 		slideTransition();
 	}else if(currentPjaxPosition == 'index'){ //Click the title and the page navigates from Index.php to Single.php
