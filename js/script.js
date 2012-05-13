@@ -72,6 +72,8 @@ var init_comment = function(){
 //Global Variable Defined Here
 //currentPjaxPosition used to save where pjax come from
 var currentPjaxPosition, currentPjaxTarget;
+//page should scroll to this height before load the new part
+var pjaxReadyScrollHeight = 0;
 
 /* Page Load part */
 
@@ -92,6 +94,8 @@ function prepareDOM(){
 		});
 		currentPjaxPosition = "index";
 	}else if($('#main').hasClass('single')){
+		//Set page title
+		changePageTitle($('#main').find('.moments_header .avatar').prop('src'),$('#main').find('.moments_header .article-title').html(),$('#main').find('.moment-timestamp').attr('time'));
 		//Set circle for first post
 		if(!$('.next_post_link').html()) {
 			$('.next_post_link').html("<div class='timeline-point'></div>");
@@ -226,6 +230,19 @@ $(document).on('pjax:beforeSend',function() {
 	
 });
 
+//change the title, avatar, time.
+function changePageTitle(avatar,title,time) {
+	console.log(time);
+	if($('#page-title>h2').html() == title)return;
+	$('#page-title>h2').addClass('opacity-zero');
+	$('#page-title>img').addClass('opacity-zero');
+	$('#clock').html(time);
+	setTimeout(function(){
+		$('#page-title>h2').html(title).removeClass('opacity-zero');
+		$('#page-title>img').prop('src',avatar).removeClass('opacity-zero');
+	},200)
+}
+
 /* Index.php: change the static title display as page scrolls */
 var timer = 0,
     delay = 100; //you can tweak this value
@@ -235,26 +252,12 @@ var titlechange = function() {
     var scrollPosition = $(window).scrollTop()+320;
 	$('.index article').each(function(){
 		if(scrollPosition > $(this).offset().top || scrollPosition == $(this).offset().top){
-			if($(this).next().length != 0){
-				if(scrollPosition < $(this).next().offset().top && $(this).find('.moments_header').css('display') == 'none'){
-					$('.visible_header').animate({opacity: 0},250,function(){
-						$(this).css({display: 'none'});
-						$(this).removeClass('visible_header');
-					});
-					$(this).find('.moments_header').css({display: 'block'}).animate({opacity: 1},250,function(){
-						$(this).addClass('visible_header');
-					});
-					return false;
+			if($(this).next().length){
+				if(scrollPosition < $(this).next().offset().top){
+					changePageTitle($(this).find('.moments_header .avatar').prop('src'),$(this).find('.moments_header .article-title').html(),$(this).find('.moment-timestamp').attr('time'));
 				}
-			}else if($(this).find('.moments_header').css('display') == 'none'){
-				$('.visible_header').animate({opacity: 0},250,function(){
-					$(this).css({display: 'none'});
-					$(this).removeClass('visible_header');
-				});
-				$(this).find('.moments_header').css({display: 'block'}).animate({opacity: 1},250,function(){
-					$(this).addClass('visible_header');
-				});
-				return false;
+			}else{
+				changePageTitle($(this).find('.moments_header .avatar').prop('src'),$(this).find('.moments_header .article-title').html(),$(this).find('.moment-timestamp').attr('time'));
 			}
 			
 		}

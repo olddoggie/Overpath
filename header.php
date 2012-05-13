@@ -82,3 +82,21 @@
 -->
 		<span id="timeclock" class="arrow-left"></span>
    </div>
+
+<div id="center-container">
+<div class="left">
+	<div id="page-title">
+	<img alt="" src="" class="user-avatar avatar avatar-60 opacity-transition">
+	<b style="opacity: 1; "></b>
+	<h2 class="article-title opacity-transition"></h2>
+	</div>
+</div>
+<a href="javascript:toggleSidebar();" class="transform-anime-enable">
+	<div class="right margin-anime-enable">
+	<div id="hint" class="opacity-transition">浏览文章列表</div>
+	<div id="clock" class="opacity-transition"></div>
+	<div class="time-arrow"></div>
+
+	</div>
+</a>
+</div>

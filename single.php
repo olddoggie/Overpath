@@ -15,7 +15,7 @@ get_header(); ?>
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
   <article <?php post_class() ?> id="post-<?php the_ID(); ?>">
-    <header class="moments_header">
+    <header class="moments_header" style="display:none">
     <div class="user-avatar tooltip-target image-pre-opacity-zero-holder">
         <?php echo get_avatar(get_the_author_meta('user_email'), 60); ?>
         <b></b>
@@ -36,7 +36,7 @@ get_header(); ?>
 	    	</div>
 	    	 <div class="moment-tags">
 	             — <span class="moment-author"><?php the_author() ?></span>
-	            <span class="moment-timestamp"><?php the_time_ago() ?></span>
+	            <span class="moment-timestamp" time="<?php echo get_the_time('d,F Y'); ?>"><?php the_time_ago() ?></span>
 	        </div>
 	        <div class="feedback-actions">
 	       		<a href="#comment" class="action action-comment"><b>Add Comment</b></a>
