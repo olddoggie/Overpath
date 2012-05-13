@@ -60,10 +60,8 @@ HTML Boilerplate styles can be found in the html5-boilerplate/css directory.
 html,
 body {
     color: #333;
-    font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB",Arial,"Microsoft Yahei",sans-serif;
+    font-family: "Helvetica Neue","Hiragino Sans GB",Arial,"Microsoft Yahei",sans-serif;
     font-size: 13px;
-    -webkit-font-smoothing: antialiased;
-    font-smoothing: antialiased;
     font-weight: normal;
     line-height: 18px;
     margin: 0px;
